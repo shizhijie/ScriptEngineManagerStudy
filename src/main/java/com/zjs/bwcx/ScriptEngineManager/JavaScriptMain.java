@@ -1,6 +1,8 @@
 package com.zjs.bwcx.ScriptEngineManager;
 
 import java.io.StringReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.script.Bindings;
 import javax.script.Invocable;
@@ -96,6 +98,90 @@ public class JavaScriptMain {
 		createBindings.put("c", 0.3);
 		//Object eval = engine.eval(option);
 		Object eval = engine.eval(option, createBindings);
+		System.out.println(eval);
+		System.out.println("结果类型：" + eval.getClass().getName() + ",计算结果：" + eval);
+	}
+	
+	@Test
+	public void scriptTest9() throws ScriptException {
+		Map<String, Object> _source = new HashMap<>();
+		_source.put("j1y_cxxw_gpfs_hlwbl", 0.1);
+		_source.put("j1y_cxxw_gpfs_sjbl", 0.2);
+		_source.put("j1y_cxxw_cccs_cczcs", 0.3);
+		String option = "(function (_source) {"+
+				"try{\r\n"+
+					"var hlwbl = _source.j1y_cxxw_gpfs_hlwbl - 0;"+
+					"var sjbl = _source.j1y_cxxw_gpfs_sjbl - 0;"+
+					"var ccrcczcs = _source.j1y_cxxw_cccs_cczcs - 0;"+
+					"var bl  = 0;"+
+					"if(ccrcczcs!=0){"+
+					"	bl  = (1 - (hlwbl + sjbl))*100;"+
+					"}"+
+					"if(bl>0  && bl<40){"+
+					"	return \"1\";"+
+					"}else if(bl>=40 && bl<80){"+
+					"	return \"2\";"+
+					"}else if(bl>=80 && bl<=100){"+
+					"	return \"3\";"+
+					"}else if(bl==0){"+
+					"	return \"0\";"+
+					"}"+
+				"}catch(e){"+
+				"	return \"-1\";"+
+				"}"+
+			"})(_source)";
+		//ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+		ScriptEngine engine = new ScriptEngineManager().getEngineByName("javascript");
+		Bindings createBindings = engine.createBindings();
+		createBindings.put("_source", _source);
+		//createBindings.put("a", 0.1);
+		//createBindings.put("b", 0.2);
+		//createBindings.put("c", 0.3);
+		//Object eval = engine.eval(option);
+		Object eval = engine.eval(option, createBindings);
+		System.out.println(eval);
+		System.out.println("结果类型：" + eval.getClass().getName() + ",计算结果：" + eval);
+	}
+	
+	@Test
+	public void scriptTest10() throws ScriptException {
+		Map<String, Object> _source = new HashMap<>();
+		_source.put("j1y_cxxw_gpfs_hlwbl", 0.1);
+		_source.put("j1y_cxxw_gpfs_sjbl", 0.2);
+		_source.put("j1y_cxxw_cccs_cczcs", 0.3);
+		String option = "(function (_source) {"+
+				"try{\r\n"+
+					"var hlwbl = _source.j1y_cxxw_gpfs_hlwbl - 0;"+
+					"var sjbl = _source.j1y_cxxw_gpfs_sjbl - 0;"+
+					"var ccrcczcs = _source.j1y_cxxw_cccs_cczcs - 0;"+
+					"var bl  = 0;"+
+					"if(ccrcczcs!=0){"+
+					"	bl  = (1 - (hlwbl + sjbl))*100;"+
+					"}"+
+					"if(bl>0  && bl<40){"+
+					"	return \"1\";"+
+					"}else if(bl>=40 && bl<80){"+
+					"	return \"2\";"+
+					"}else if(bl>=80 && bl<=100){"+
+					"	return \"3\";"+
+					"}else if(bl==0){"+
+					"	return \"0\";"+
+					"}"+
+				"}catch(e){"+
+				"	return \"-1\";"+
+				"}"+
+			"})(_source)";
+		//ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+		ScriptEngine engine = new ScriptEngineManager().getEngineByName("javascript");
+		//Bindings createBindings = engine.createBindings();
+		//createBindings.put("_source", _source);
+		//createBindings.put("a", 0.1);
+		//createBindings.put("b", 0.2);
+		//createBindings.put("c", 0.3);
+		//Object eval = engine.eval(option);
+		engine.put("_source", _source);
+		//Object eval = engine.eval(option, createBindings);
+		Object eval = engine.eval(option);
 		System.out.println(eval);
 		System.out.println("结果类型：" + eval.getClass().getName() + ",计算结果：" + eval);
 	}
